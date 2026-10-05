@@ -16,7 +16,59 @@ type THtmlTagName = keyof ExtendedHtmlElementTagNameMap
 type THtmlElForTag<Tag extends THtmlTagName> =
   ExtendedHtmlElementTagNameMap[Tag]
 
-export function defineStaticElementTag<Tag extends THtmlTagName>(tagName: Tag) {
+export type StaticHtmlTag<Tag extends THtmlTagName> = {
+  new (): {}
+  readonly elName: Tag
+  readonly inst: ElDescription<THtmlElForTag<Tag>>
+  _(nested: ElemenTs): ElDescription<THtmlElForTag<Tag>>
+  _(...nested: TCanBeRendered[]): ElDescription<THtmlElForTag<Tag>>
+  class(args: TClassListEntry[]): ElDescription<THtmlElForTag<Tag>>
+  class(...args: TClassListEntry[]): ElDescription<THtmlElForTag<Tag>>
+  setRef(
+    setRefCb: (ref: THtmlElForTag<Tag>) => void,
+  ): ElDescription<THtmlElForTag<Tag>>
+  attr(
+    key: string,
+    value?: string | TReactive,
+  ): ElDescription<THtmlElForTag<Tag>>
+  attrSet(
+    attributes: Record<string, string | TReactive>,
+  ): ElDescription<THtmlElForTag<Tag>>
+  prop<K extends WritablePropertyKey<THtmlElForTag<Tag>>>(
+    key: K,
+    value: PropertyValue<THtmlElForTag<Tag>, K>,
+  ): ElDescription<THtmlElForTag<Tag>>
+  propSet(
+    properties: PropertySet<THtmlElForTag<Tag>>,
+  ): ElDescription<THtmlElForTag<Tag>>
+  style(
+    value: TStyle | IReactiveAdapter<TStyle>,
+  ): ElDescription<THtmlElForTag<Tag>>
+  afterMount(
+    fn: Parameters<ElDescription<THtmlElForTag<Tag>>['afterMount']>[0],
+  ): ElDescription<THtmlElForTag<Tag>>
+  onRemove(
+    fn: Parameters<ElDescription<THtmlElForTag<Tag>>['onRemove']>[0],
+  ): ElDescription<THtmlElForTag<Tag>>
+  event<
+    EK extends keyof GlobalEventHandlersEventMap,
+    EV extends GlobalEventHandlersEventMap[EK] =
+      GlobalEventHandlersEventMap[EK],
+  >(
+    eName: EK,
+    cb: (
+      e: EV & {
+        readonly target: THtmlElForTag<Tag> extends HTMLElement
+          ? THtmlElForTag<Tag>
+          : EventTarget | null
+      },
+    ) => void,
+  ): ElDescription<THtmlElForTag<Tag>>
+}
+
+export function defineStaticElementTag<Tag extends THtmlTagName>(
+  tagName: Tag,
+): StaticHtmlTag<Tag> {
   type ElT = THtmlElForTag<Tag>
 
   return class StaticHtmlTag {
@@ -79,8 +131,8 @@ export function defineStaticElementTag<Tag extends THtmlTagName>(tagName: Tag) {
 
     static event<
       EK extends keyof GlobalEventHandlersEventMap,
-      EV extends
-        GlobalEventHandlersEventMap[EK] = GlobalEventHandlersEventMap[EK],
+      EV extends GlobalEventHandlersEventMap[EK] =
+        GlobalEventHandlersEventMap[EK],
     >(
       eName: EK,
       cb: (
@@ -94,5 +146,7 @@ export function defineStaticElementTag<Tag extends THtmlTagName>(tagName: Tag) {
   }
 }
 
-export class comment extends defineStaticElementTag('comment') {}
-export class text extends defineStaticElementTag('text') {}
+const CommentBase: StaticHtmlTag<'comment'> = defineStaticElementTag('comment')
+export class comment extends CommentBase {}
+const TextBase: StaticHtmlTag<'text'> = defineStaticElementTag('text')
+export class text extends TextBase {}

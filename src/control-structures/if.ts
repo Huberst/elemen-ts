@@ -1,6 +1,6 @@
 import type { IReactiveAdapter } from '../reactive-adapters.ts'
 import { isReactiveAdapter } from '../reactive-adapters.ts'
-import type { ElemenTs } from '../static-el-base.ts'
+import type { ElDescription, ElemenTs } from '../static-el-base.ts'
 import { _DYNAMIC } from './dynamic.ts'
 
 type TAllowedToBoolean = boolean | string | number | null | undefined
@@ -13,7 +13,12 @@ const EMPTY_FN = () => EMPTY
 
 export function _IF(
   condOrReactive: TAllowedToBoolean | TAsReactiveAdapterAllowed,
-) {
+): {
+  THEN: (forThen: TConditionFnParam) => ElDescription<Comment> & {
+    ELSE: (forElse: TConditionFnParam) => ElDescription<Comment>
+  }
+  ELSE: (forElse: TConditionFnParam) => ElDescription<Comment>
+} {
   let thenFn: () => ElemenTs = EMPTY_FN
   let elseFn: () => ElemenTs = EMPTY_FN
 

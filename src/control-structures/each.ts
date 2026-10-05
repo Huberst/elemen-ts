@@ -4,7 +4,12 @@ import {
   type IReactiveAdapter,
   isReactiveAdapter,
 } from '../reactive-adapters.ts'
-import type { ElemenTs, IElementEntity, IRenderCtx } from '../static-el-base.ts'
+import type {
+  ElDescription,
+  ElemenTs,
+  IElementEntity,
+  IRenderCtx,
+} from '../static-el-base.ts'
 
 const defaultDoFn = (item: any, idx: number) => {
   console.warn('NO DO FN!')
@@ -22,7 +27,9 @@ type TEachEntityMap<T> = Map<string, TEachEntry<T>>
 export const _EACH = <T>(
   arrayOrReactive: T[] | IReactiveAdapter<T[]>,
   idxFn?: (item: T, idx: number) => string,
-) => {
+): {
+  DO: (passedDoFn: (item: T, idx: number) => ElemenTs) => ElDescription<Comment>
+} => {
   let nextValues: T[] = []
   let nextKeys: string[] = []
 

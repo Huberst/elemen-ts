@@ -1,7 +1,12 @@
 import { comment } from '../define-tag.ts'
 import { SubscriptionManager } from '../dom-renderer/sub-manager.ts'
 import type { IReactiveAdapter } from '../reactive-adapters.ts'
-import type { ElemenTs, IElementEntity, IRenderCtx } from '../static-el-base.ts'
+import type {
+  ElDescription,
+  ElemenTs,
+  IElementEntity,
+  IRenderCtx,
+} from '../static-el-base.ts'
 
 /**
  * Creates a dynamic element that can be used in templates.
@@ -10,7 +15,7 @@ import type { ElemenTs, IElementEntity, IRenderCtx } from '../static-el-base.ts'
 export const _DYNAMIC = (
   source: IReactiveAdapter<() => ElemenTs>,
   _name = '_DYN',
-) => {
+): ElDescription<Comment> => {
   const subManager = new SubscriptionManager()
 
   let anchorEntity: IElementEntity

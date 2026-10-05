@@ -64,14 +64,14 @@ export const getHTMLElementTagNameMapEntries = (opts?: {
 }
 
 const classTemplate = (tagName: string) =>
-  `export class ${tagName} extends defineStaticElementTag('${tagName}') {}\n`
+  `const ${tagName}Base: StaticHtmlTag<'${tagName}'> = defineStaticElementTag('${tagName}')\nexport class ${tagName} extends ${tagName}Base {}\n`
 
 const targetDir = './generated'
 
 if (import.meta.main) {
   const entries = getHTMLElementTagNameMapEntries()
   let allClasses = ''
-  allClasses += `import { defineStaticElementTag } from "../src/define-tag.ts"\n\n`
+  allClasses += `import { defineStaticElementTag, type StaticHtmlTag } from "../src/define-tag.ts"\n\n`
 
   allClasses += `export const SUPPORTED_HTML_TAGS = [${entries.map((tag) => `'${tag.key}'`).join(', ')}]\n`
 

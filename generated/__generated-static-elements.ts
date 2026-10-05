@@ -1,113 +1,223 @@
-import { defineStaticElementTag } from "../src/define-tag.ts"
+import { defineStaticElementTag, type StaticHtmlTag } from "../src/define-tag.ts"
 
 export const SUPPORTED_HTML_TAGS = ['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdi', 'bdo', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'cite', 'code', 'col', 'colgroup', 'data', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'link', 'main', 'map', 'mark', 'menu', 'meta', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'script', 'search', 'section', 'select', 'slot', 'small', 'source', 'span', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'var', 'video', 'wbr']
-export class a extends defineStaticElementTag('a') {}
-export class abbr extends defineStaticElementTag('abbr') {}
-export class address extends defineStaticElementTag('address') {}
-export class area extends defineStaticElementTag('area') {}
-export class article extends defineStaticElementTag('article') {}
-export class aside extends defineStaticElementTag('aside') {}
-export class audio extends defineStaticElementTag('audio') {}
-export class b extends defineStaticElementTag('b') {}
-export class base extends defineStaticElementTag('base') {}
-export class bdi extends defineStaticElementTag('bdi') {}
-export class bdo extends defineStaticElementTag('bdo') {}
-export class blockquote extends defineStaticElementTag('blockquote') {}
-export class body extends defineStaticElementTag('body') {}
-export class br extends defineStaticElementTag('br') {}
-export class button extends defineStaticElementTag('button') {}
-export class canvas extends defineStaticElementTag('canvas') {}
-export class caption extends defineStaticElementTag('caption') {}
-export class cite extends defineStaticElementTag('cite') {}
-export class code extends defineStaticElementTag('code') {}
-export class col extends defineStaticElementTag('col') {}
-export class colgroup extends defineStaticElementTag('colgroup') {}
-export class data extends defineStaticElementTag('data') {}
-export class datalist extends defineStaticElementTag('datalist') {}
-export class dd extends defineStaticElementTag('dd') {}
-export class del extends defineStaticElementTag('del') {}
-export class details extends defineStaticElementTag('details') {}
-export class dfn extends defineStaticElementTag('dfn') {}
-export class dialog extends defineStaticElementTag('dialog') {}
-export class div extends defineStaticElementTag('div') {}
-export class dl extends defineStaticElementTag('dl') {}
-export class dt extends defineStaticElementTag('dt') {}
-export class em extends defineStaticElementTag('em') {}
-export class embed extends defineStaticElementTag('embed') {}
-export class fieldset extends defineStaticElementTag('fieldset') {}
-export class figcaption extends defineStaticElementTag('figcaption') {}
-export class figure extends defineStaticElementTag('figure') {}
-export class footer extends defineStaticElementTag('footer') {}
-export class form extends defineStaticElementTag('form') {}
-export class h1 extends defineStaticElementTag('h1') {}
-export class h2 extends defineStaticElementTag('h2') {}
-export class h3 extends defineStaticElementTag('h3') {}
-export class h4 extends defineStaticElementTag('h4') {}
-export class h5 extends defineStaticElementTag('h5') {}
-export class h6 extends defineStaticElementTag('h6') {}
-export class head extends defineStaticElementTag('head') {}
-export class header extends defineStaticElementTag('header') {}
-export class hgroup extends defineStaticElementTag('hgroup') {}
-export class hr extends defineStaticElementTag('hr') {}
-export class html extends defineStaticElementTag('html') {}
-export class i extends defineStaticElementTag('i') {}
-export class iframe extends defineStaticElementTag('iframe') {}
-export class img extends defineStaticElementTag('img') {}
-export class input extends defineStaticElementTag('input') {}
-export class ins extends defineStaticElementTag('ins') {}
-export class kbd extends defineStaticElementTag('kbd') {}
-export class label extends defineStaticElementTag('label') {}
-export class legend extends defineStaticElementTag('legend') {}
-export class li extends defineStaticElementTag('li') {}
-export class link extends defineStaticElementTag('link') {}
-export class main extends defineStaticElementTag('main') {}
-export class map extends defineStaticElementTag('map') {}
-export class mark extends defineStaticElementTag('mark') {}
-export class menu extends defineStaticElementTag('menu') {}
-export class meta extends defineStaticElementTag('meta') {}
-export class meter extends defineStaticElementTag('meter') {}
-export class nav extends defineStaticElementTag('nav') {}
-export class noscript extends defineStaticElementTag('noscript') {}
-export class ol extends defineStaticElementTag('ol') {}
-export class optgroup extends defineStaticElementTag('optgroup') {}
-export class option extends defineStaticElementTag('option') {}
-export class output extends defineStaticElementTag('output') {}
-export class p extends defineStaticElementTag('p') {}
-export class picture extends defineStaticElementTag('picture') {}
-export class pre extends defineStaticElementTag('pre') {}
-export class progress extends defineStaticElementTag('progress') {}
-export class q extends defineStaticElementTag('q') {}
-export class rp extends defineStaticElementTag('rp') {}
-export class rt extends defineStaticElementTag('rt') {}
-export class ruby extends defineStaticElementTag('ruby') {}
-export class s extends defineStaticElementTag('s') {}
-export class samp extends defineStaticElementTag('samp') {}
-export class script extends defineStaticElementTag('script') {}
-export class search extends defineStaticElementTag('search') {}
-export class section extends defineStaticElementTag('section') {}
-export class select extends defineStaticElementTag('select') {}
-export class slot extends defineStaticElementTag('slot') {}
-export class small extends defineStaticElementTag('small') {}
-export class source extends defineStaticElementTag('source') {}
-export class span extends defineStaticElementTag('span') {}
-export class strong extends defineStaticElementTag('strong') {}
-export class style extends defineStaticElementTag('style') {}
-export class sub extends defineStaticElementTag('sub') {}
-export class summary extends defineStaticElementTag('summary') {}
-export class sup extends defineStaticElementTag('sup') {}
-export class table extends defineStaticElementTag('table') {}
-export class tbody extends defineStaticElementTag('tbody') {}
-export class td extends defineStaticElementTag('td') {}
-export class template extends defineStaticElementTag('template') {}
-export class textarea extends defineStaticElementTag('textarea') {}
-export class tfoot extends defineStaticElementTag('tfoot') {}
-export class th extends defineStaticElementTag('th') {}
-export class thead extends defineStaticElementTag('thead') {}
-export class time extends defineStaticElementTag('time') {}
-export class title extends defineStaticElementTag('title') {}
-export class tr extends defineStaticElementTag('tr') {}
-export class track extends defineStaticElementTag('track') {}
-export class u extends defineStaticElementTag('u') {}
-export class ul extends defineStaticElementTag('ul') {}
-export class video extends defineStaticElementTag('video') {}
-export class wbr extends defineStaticElementTag('wbr') {}
+const aBase: StaticHtmlTag<'a'> = defineStaticElementTag('a')
+export class a extends aBase {}
+const abbrBase: StaticHtmlTag<'abbr'> = defineStaticElementTag('abbr')
+export class abbr extends abbrBase {}
+const addressBase: StaticHtmlTag<'address'> = defineStaticElementTag('address')
+export class address extends addressBase {}
+const areaBase: StaticHtmlTag<'area'> = defineStaticElementTag('area')
+export class area extends areaBase {}
+const articleBase: StaticHtmlTag<'article'> = defineStaticElementTag('article')
+export class article extends articleBase {}
+const asideBase: StaticHtmlTag<'aside'> = defineStaticElementTag('aside')
+export class aside extends asideBase {}
+const audioBase: StaticHtmlTag<'audio'> = defineStaticElementTag('audio')
+export class audio extends audioBase {}
+const bBase: StaticHtmlTag<'b'> = defineStaticElementTag('b')
+export class b extends bBase {}
+const baseBase: StaticHtmlTag<'base'> = defineStaticElementTag('base')
+export class base extends baseBase {}
+const bdiBase: StaticHtmlTag<'bdi'> = defineStaticElementTag('bdi')
+export class bdi extends bdiBase {}
+const bdoBase: StaticHtmlTag<'bdo'> = defineStaticElementTag('bdo')
+export class bdo extends bdoBase {}
+const blockquoteBase: StaticHtmlTag<'blockquote'> = defineStaticElementTag('blockquote')
+export class blockquote extends blockquoteBase {}
+const bodyBase: StaticHtmlTag<'body'> = defineStaticElementTag('body')
+export class body extends bodyBase {}
+const brBase: StaticHtmlTag<'br'> = defineStaticElementTag('br')
+export class br extends brBase {}
+const buttonBase: StaticHtmlTag<'button'> = defineStaticElementTag('button')
+export class button extends buttonBase {}
+const canvasBase: StaticHtmlTag<'canvas'> = defineStaticElementTag('canvas')
+export class canvas extends canvasBase {}
+const captionBase: StaticHtmlTag<'caption'> = defineStaticElementTag('caption')
+export class caption extends captionBase {}
+const citeBase: StaticHtmlTag<'cite'> = defineStaticElementTag('cite')
+export class cite extends citeBase {}
+const codeBase: StaticHtmlTag<'code'> = defineStaticElementTag('code')
+export class code extends codeBase {}
+const colBase: StaticHtmlTag<'col'> = defineStaticElementTag('col')
+export class col extends colBase {}
+const colgroupBase: StaticHtmlTag<'colgroup'> = defineStaticElementTag('colgroup')
+export class colgroup extends colgroupBase {}
+const dataBase: StaticHtmlTag<'data'> = defineStaticElementTag('data')
+export class data extends dataBase {}
+const datalistBase: StaticHtmlTag<'datalist'> = defineStaticElementTag('datalist')
+export class datalist extends datalistBase {}
+const ddBase: StaticHtmlTag<'dd'> = defineStaticElementTag('dd')
+export class dd extends ddBase {}
+const delBase: StaticHtmlTag<'del'> = defineStaticElementTag('del')
+export class del extends delBase {}
+const detailsBase: StaticHtmlTag<'details'> = defineStaticElementTag('details')
+export class details extends detailsBase {}
+const dfnBase: StaticHtmlTag<'dfn'> = defineStaticElementTag('dfn')
+export class dfn extends dfnBase {}
+const dialogBase: StaticHtmlTag<'dialog'> = defineStaticElementTag('dialog')
+export class dialog extends dialogBase {}
+const divBase: StaticHtmlTag<'div'> = defineStaticElementTag('div')
+export class div extends divBase {}
+const dlBase: StaticHtmlTag<'dl'> = defineStaticElementTag('dl')
+export class dl extends dlBase {}
+const dtBase: StaticHtmlTag<'dt'> = defineStaticElementTag('dt')
+export class dt extends dtBase {}
+const emBase: StaticHtmlTag<'em'> = defineStaticElementTag('em')
+export class em extends emBase {}
+const embedBase: StaticHtmlTag<'embed'> = defineStaticElementTag('embed')
+export class embed extends embedBase {}
+const fieldsetBase: StaticHtmlTag<'fieldset'> = defineStaticElementTag('fieldset')
+export class fieldset extends fieldsetBase {}
+const figcaptionBase: StaticHtmlTag<'figcaption'> = defineStaticElementTag('figcaption')
+export class figcaption extends figcaptionBase {}
+const figureBase: StaticHtmlTag<'figure'> = defineStaticElementTag('figure')
+export class figure extends figureBase {}
+const footerBase: StaticHtmlTag<'footer'> = defineStaticElementTag('footer')
+export class footer extends footerBase {}
+const formBase: StaticHtmlTag<'form'> = defineStaticElementTag('form')
+export class form extends formBase {}
+const h1Base: StaticHtmlTag<'h1'> = defineStaticElementTag('h1')
+export class h1 extends h1Base {}
+const h2Base: StaticHtmlTag<'h2'> = defineStaticElementTag('h2')
+export class h2 extends h2Base {}
+const h3Base: StaticHtmlTag<'h3'> = defineStaticElementTag('h3')
+export class h3 extends h3Base {}
+const h4Base: StaticHtmlTag<'h4'> = defineStaticElementTag('h4')
+export class h4 extends h4Base {}
+const h5Base: StaticHtmlTag<'h5'> = defineStaticElementTag('h5')
+export class h5 extends h5Base {}
+const h6Base: StaticHtmlTag<'h6'> = defineStaticElementTag('h6')
+export class h6 extends h6Base {}
+const headBase: StaticHtmlTag<'head'> = defineStaticElementTag('head')
+export class head extends headBase {}
+const headerBase: StaticHtmlTag<'header'> = defineStaticElementTag('header')
+export class header extends headerBase {}
+const hgroupBase: StaticHtmlTag<'hgroup'> = defineStaticElementTag('hgroup')
+export class hgroup extends hgroupBase {}
+const hrBase: StaticHtmlTag<'hr'> = defineStaticElementTag('hr')
+export class hr extends hrBase {}
+const htmlBase: StaticHtmlTag<'html'> = defineStaticElementTag('html')
+export class html extends htmlBase {}
+const iBase: StaticHtmlTag<'i'> = defineStaticElementTag('i')
+export class i extends iBase {}
+const iframeBase: StaticHtmlTag<'iframe'> = defineStaticElementTag('iframe')
+export class iframe extends iframeBase {}
+const imgBase: StaticHtmlTag<'img'> = defineStaticElementTag('img')
+export class img extends imgBase {}
+const inputBase: StaticHtmlTag<'input'> = defineStaticElementTag('input')
+export class input extends inputBase {}
+const insBase: StaticHtmlTag<'ins'> = defineStaticElementTag('ins')
+export class ins extends insBase {}
+const kbdBase: StaticHtmlTag<'kbd'> = defineStaticElementTag('kbd')
+export class kbd extends kbdBase {}
+const labelBase: StaticHtmlTag<'label'> = defineStaticElementTag('label')
+export class label extends labelBase {}
+const legendBase: StaticHtmlTag<'legend'> = defineStaticElementTag('legend')
+export class legend extends legendBase {}
+const liBase: StaticHtmlTag<'li'> = defineStaticElementTag('li')
+export class li extends liBase {}
+const linkBase: StaticHtmlTag<'link'> = defineStaticElementTag('link')
+export class link extends linkBase {}
+const mainBase: StaticHtmlTag<'main'> = defineStaticElementTag('main')
+export class main extends mainBase {}
+const mapBase: StaticHtmlTag<'map'> = defineStaticElementTag('map')
+export class map extends mapBase {}
+const markBase: StaticHtmlTag<'mark'> = defineStaticElementTag('mark')
+export class mark extends markBase {}
+const menuBase: StaticHtmlTag<'menu'> = defineStaticElementTag('menu')
+export class menu extends menuBase {}
+const metaBase: StaticHtmlTag<'meta'> = defineStaticElementTag('meta')
+export class meta extends metaBase {}
+const meterBase: StaticHtmlTag<'meter'> = defineStaticElementTag('meter')
+export class meter extends meterBase {}
+const navBase: StaticHtmlTag<'nav'> = defineStaticElementTag('nav')
+export class nav extends navBase {}
+const noscriptBase: StaticHtmlTag<'noscript'> = defineStaticElementTag('noscript')
+export class noscript extends noscriptBase {}
+const olBase: StaticHtmlTag<'ol'> = defineStaticElementTag('ol')
+export class ol extends olBase {}
+const optgroupBase: StaticHtmlTag<'optgroup'> = defineStaticElementTag('optgroup')
+export class optgroup extends optgroupBase {}
+const optionBase: StaticHtmlTag<'option'> = defineStaticElementTag('option')
+export class option extends optionBase {}
+const outputBase: StaticHtmlTag<'output'> = defineStaticElementTag('output')
+export class output extends outputBase {}
+const pBase: StaticHtmlTag<'p'> = defineStaticElementTag('p')
+export class p extends pBase {}
+const pictureBase: StaticHtmlTag<'picture'> = defineStaticElementTag('picture')
+export class picture extends pictureBase {}
+const preBase: StaticHtmlTag<'pre'> = defineStaticElementTag('pre')
+export class pre extends preBase {}
+const progressBase: StaticHtmlTag<'progress'> = defineStaticElementTag('progress')
+export class progress extends progressBase {}
+const qBase: StaticHtmlTag<'q'> = defineStaticElementTag('q')
+export class q extends qBase {}
+const rpBase: StaticHtmlTag<'rp'> = defineStaticElementTag('rp')
+export class rp extends rpBase {}
+const rtBase: StaticHtmlTag<'rt'> = defineStaticElementTag('rt')
+export class rt extends rtBase {}
+const rubyBase: StaticHtmlTag<'ruby'> = defineStaticElementTag('ruby')
+export class ruby extends rubyBase {}
+const sBase: StaticHtmlTag<'s'> = defineStaticElementTag('s')
+export class s extends sBase {}
+const sampBase: StaticHtmlTag<'samp'> = defineStaticElementTag('samp')
+export class samp extends sampBase {}
+const scriptBase: StaticHtmlTag<'script'> = defineStaticElementTag('script')
+export class script extends scriptBase {}
+const searchBase: StaticHtmlTag<'search'> = defineStaticElementTag('search')
+export class search extends searchBase {}
+const sectionBase: StaticHtmlTag<'section'> = defineStaticElementTag('section')
+export class section extends sectionBase {}
+const selectBase: StaticHtmlTag<'select'> = defineStaticElementTag('select')
+export class select extends selectBase {}
+const slotBase: StaticHtmlTag<'slot'> = defineStaticElementTag('slot')
+export class slot extends slotBase {}
+const smallBase: StaticHtmlTag<'small'> = defineStaticElementTag('small')
+export class small extends smallBase {}
+const sourceBase: StaticHtmlTag<'source'> = defineStaticElementTag('source')
+export class source extends sourceBase {}
+const spanBase: StaticHtmlTag<'span'> = defineStaticElementTag('span')
+export class span extends spanBase {}
+const strongBase: StaticHtmlTag<'strong'> = defineStaticElementTag('strong')
+export class strong extends strongBase {}
+const styleBase: StaticHtmlTag<'style'> = defineStaticElementTag('style')
+export class style extends styleBase {}
+const subBase: StaticHtmlTag<'sub'> = defineStaticElementTag('sub')
+export class sub extends subBase {}
+const summaryBase: StaticHtmlTag<'summary'> = defineStaticElementTag('summary')
+export class summary extends summaryBase {}
+const supBase: StaticHtmlTag<'sup'> = defineStaticElementTag('sup')
+export class sup extends supBase {}
+const tableBase: StaticHtmlTag<'table'> = defineStaticElementTag('table')
+export class table extends tableBase {}
+const tbodyBase: StaticHtmlTag<'tbody'> = defineStaticElementTag('tbody')
+export class tbody extends tbodyBase {}
+const tdBase: StaticHtmlTag<'td'> = defineStaticElementTag('td')
+export class td extends tdBase {}
+const templateBase: StaticHtmlTag<'template'> = defineStaticElementTag('template')
+export class template extends templateBase {}
+const textareaBase: StaticHtmlTag<'textarea'> = defineStaticElementTag('textarea')
+export class textarea extends textareaBase {}
+const tfootBase: StaticHtmlTag<'tfoot'> = defineStaticElementTag('tfoot')
+export class tfoot extends tfootBase {}
+const thBase: StaticHtmlTag<'th'> = defineStaticElementTag('th')
+export class th extends thBase {}
+const theadBase: StaticHtmlTag<'thead'> = defineStaticElementTag('thead')
+export class thead extends theadBase {}
+const timeBase: StaticHtmlTag<'time'> = defineStaticElementTag('time')
+export class time extends timeBase {}
+const titleBase: StaticHtmlTag<'title'> = defineStaticElementTag('title')
+export class title extends titleBase {}
+const trBase: StaticHtmlTag<'tr'> = defineStaticElementTag('tr')
+export class tr extends trBase {}
+const trackBase: StaticHtmlTag<'track'> = defineStaticElementTag('track')
+export class track extends trackBase {}
+const uBase: StaticHtmlTag<'u'> = defineStaticElementTag('u')
+export class u extends uBase {}
+const ulBase: StaticHtmlTag<'ul'> = defineStaticElementTag('ul')
+export class ul extends ulBase {}
+const videoBase: StaticHtmlTag<'video'> = defineStaticElementTag('video')
+export class video extends videoBase {}
+const wbrBase: StaticHtmlTag<'wbr'> = defineStaticElementTag('wbr')
+export class wbr extends wbrBase {}

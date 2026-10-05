@@ -39,17 +39,14 @@ export type TReactiveClassListEntry = IReactiveAdapter<
 
 type TRenderLifecycleFn = (elE: IElementEntity, rCtx: IRenderCtx) => void
 
-type SameType<A, B> =
-  (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2
-    ? true
-    : false
+type SameType<A, B> = (<T>() => T extends A ? 1 : 2) extends
+  <T>() => T extends B ? 1 : 2 ? true
+  : false
 
 export type WritablePropertyKey<T> = {
-  [K in keyof T]-?: T[K] extends (...args: any[]) => unknown
-    ? never
-    : SameType<Pick<T, K>, { -readonly [P in K]: T[P] }> extends true
-      ? K
-      : never
+  [K in keyof T]-?: T[K] extends (...args: any[]) => unknown ? never
+    : SameType<Pick<T, K>, { -readonly [P in K]: T[P] }> extends true ? K
+    : never
 }[keyof T]
 
 export type PropertyValue<T, K extends keyof T> =
@@ -60,11 +57,15 @@ export type PropertySet<T> = {
   [K in WritablePropertyKey<T>]?: PropertyValue<T, K>
 }
 
-export type TStyle = {
-  -readonly [K in keyof CSSStyleDeclaration as K extends string
-    ? CSSStyleDeclaration[K] extends string ? K : never
-    : never]?: string
-} & { [K in `--${string}`]?: string }
+export type TStyle =
+  & {
+    -readonly [
+      K in keyof CSSStyleDeclaration as K extends string
+        ? CSSStyleDeclaration[K] extends string ? K : never
+        : never
+    ]?: string
+  }
+  & { [K in `--${string}`]?: string }
 
 /**
  * El Description Class.
@@ -75,7 +76,11 @@ export type TStyle = {
 export class ElDescription<
   ConHTMLElType extends HTMLElement | unknown = unknown,
 > {
-  public lc = {
+  public lc: {
+    onMount: Set<TRenderLifecycleFn>
+    onRemove: Set<TRenderLifecycleFn>
+    setRef: Set<(ref: ConHTMLElType) => void>
+  } = {
     onMount: new Set<TRenderLifecycleFn>(),
     onRemove: new Set<TRenderLifecycleFn>(),
     setRef: new Set<(ref: ConHTMLElType) => void>(),
@@ -87,11 +92,12 @@ export class ElDescription<
 
   public namespace?: string
 
-  public eventHandlers = new Map<string, (event: any) => void>()
+  public eventHandlers: Map<string, (event: any) => void> = new Map()
 
-  public attributes = new Map<string, string | TReactive | undefined>()
+  public attributes: Map<string, string | TReactive | undefined> = new Map()
 
-  public properties = new Map<WritablePropertyKey<ConHTMLElType>, unknown>()
+  public properties: Map<WritablePropertyKey<ConHTMLElType>, unknown> =
+    new Map()
 
   public styles?: TStyle | IReactiveAdapter<TStyle>
 
@@ -122,59 +128,58 @@ export class ElDescription<
 
   public event<
     EK extends keyof GlobalEventHandlersEventMap,
-    EV extends
-      GlobalEventHandlersEventMap[EK] = GlobalEventHandlersEventMap[EK],
+    EV extends GlobalEventHandlersEventMap[EK] =
+      GlobalEventHandlersEventMap[EK],
   >(
     eName: EK,
     cb: (
       e: EV & {
-        readonly target: ConHTMLElType extends HTMLElement
-          ? ConHTMLElType
+        readonly target: ConHTMLElType extends HTMLElement ? ConHTMLElType
           : EventTarget | null
       },
     ) => void,
-  ) {
+  ): this {
     this.eventHandlers.set(eName, cb as (e: EV) => void)
     return this
   }
 
-  public attr(key: string, value?: string | TReactive) {
+  public attr(key: string, value?: string | TReactive): this {
     this.attributes.set(key, value)
     return this
   }
 
-  public attrSet(attributes: Record<string, string | TReactive>) {
+  public attrSet(attributes: Record<string, string | TReactive>): this {
     for (const [key, value] of Object.entries(attributes)) {
       this.attr(key, value)
     }
     return this
   }
 
-  public dataAttr(key: string, value?: string | TReactive) {
+  public dataAttr(key: string, value?: string | TReactive): this {
     return this.attr(`data-${key}`, value)
   }
 
   public prop<K extends WritablePropertyKey<ConHTMLElType>>(
     key: K,
     value: PropertyValue<ConHTMLElType, K>,
-  ) {
+  ): this {
     this.properties.set(key, value)
     return this
   }
 
-  public propSet(properties: PropertySet<ConHTMLElType>) {
+  public propSet(properties: PropertySet<ConHTMLElType>): this {
     for (const [key, value] of Object.entries(properties)) {
       this.properties.set(key as WritablePropertyKey<ConHTMLElType>, value)
     }
     return this
   }
 
-  public style(value: TStyle | IReactiveAdapter<TStyle>) {
+  public style(value: TStyle | IReactiveAdapter<TStyle>): this {
     this.styles = value
     return this
   }
 
-  public setRef(setRefCb: (ref: ConHTMLElType) => void) {
+  public setRef(setRefCb: (ref: ConHTMLElType) => void): this {
     this.lc.setRef.add(setRefCb)
     return this
   }
@@ -190,12 +195,12 @@ export class ElDescription<
     return this
   }
 
-  public afterMount(fn: TRenderLifecycleFn) {
+  public afterMount(fn: TRenderLifecycleFn): this {
     this.lc.onMount.add(fn)
     return this
   }
 
-  public onRemove(fn: TRenderLifecycleFn) {
+  public onRemove(fn: TRenderLifecycleFn): this {
     this.lc.onRemove.add(fn)
     return this
   }

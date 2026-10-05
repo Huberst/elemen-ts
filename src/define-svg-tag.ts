@@ -24,7 +24,51 @@ type TSvgTagName = keyof SVGElementTagNameMap
 type TSvgElForTag<Tag extends TSvgTagName> =
   ML_CUSTOM_SVGPathElementTagNameMap[Tag]
 
-export function defineStaticSvgTag<Tag extends TSvgTagName>(tagName: Tag) {
+export type StaticSvgTag<Tag extends TSvgTagName> = {
+  new (): {}
+  readonly elName: TElementTagName
+  readonly namespace: typeof SVG_NAMESPACE
+  readonly inst: ElDescription<TSvgElForTag<Tag>>
+  _(nested: ElemenTs): ElDescription<TSvgElForTag<Tag>>
+  _(...nested: TCanBeRendered[]): ElDescription<TSvgElForTag<Tag>>
+  class(args: TClassListEntry[]): ElDescription<TSvgElForTag<Tag>>
+  class(...args: TClassListEntry[]): ElDescription<TSvgElForTag<Tag>>
+  attr(
+    key: string,
+    value?: string | TReactive,
+  ): ElDescription<TSvgElForTag<Tag>>
+  attrSet(
+    attributes: Record<string, string | TReactive>,
+  ): ElDescription<TSvgElForTag<Tag>>
+  prop<K extends WritablePropertyKey<TSvgElForTag<Tag>>>(
+    key: K,
+    value: PropertyValue<TSvgElForTag<Tag>, K>,
+  ): ElDescription<TSvgElForTag<Tag>>
+  propSet(
+    properties: PropertySet<TSvgElForTag<Tag>>,
+  ): ElDescription<TSvgElForTag<Tag>>
+  style(
+    value: TStyle | IReactiveAdapter<TStyle>,
+  ): ElDescription<TSvgElForTag<Tag>>
+  setRef(
+    setRefCb: (ref: TSvgElForTag<Tag>) => void,
+  ): ElDescription<TSvgElForTag<Tag>>
+  afterMount(
+    fn: Parameters<ElDescription<TSvgElForTag<Tag>>['afterMount']>[0],
+  ): ElDescription<TSvgElForTag<Tag>>
+  onRemove(
+    fn: Parameters<ElDescription<TSvgElForTag<Tag>>['onRemove']>[0],
+  ): ElDescription<TSvgElForTag<Tag>>
+  event<
+    EK extends keyof GlobalEventHandlersEventMap,
+    EV extends GlobalEventHandlersEventMap[EK] =
+      GlobalEventHandlersEventMap[EK],
+  >(eName: EK, cb: (e: EV) => void): ElDescription<TSvgElForTag<Tag>>
+}
+
+export function defineStaticSvgTag<Tag extends TSvgTagName>(
+  tagName: Tag,
+): StaticSvgTag<Tag> {
   type ElT = TSvgElForTag<Tag>
 
   return class StaticSvgTag {
@@ -88,8 +132,8 @@ export function defineStaticSvgTag<Tag extends TSvgTagName>(tagName: Tag) {
 
     static event<
       EK extends keyof GlobalEventHandlersEventMap,
-      EV extends
-        GlobalEventHandlersEventMap[EK] = GlobalEventHandlersEventMap[EK],
+      EV extends GlobalEventHandlersEventMap[EK] =
+        GlobalEventHandlersEventMap[EK],
     >(eName: EK, cb: (e: EV) => void) {
       return this.inst.event(eName, cb)
     }

@@ -2,8 +2,19 @@
   "name": "@huberst/elemen-ts",
   "license": "MIT",
   "exports": "./src/index.ts",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Reactive UI components in plain TypeScript.",
+  "publish": {
+    "include": [
+      "src/**/*.ts",
+      "generated/__generated-static-elements.ts",
+      "deno.jsonc",
+      "README.md",
+      "LICENSE",
+      "page/assets/elemen-ts.svg"
+    ],
+    "exclude": ["src/**/*.test.ts"]
+  },
   "compilerOptions": {
     "lib": ["dom", "es2024", "deno.ns", "deno.unstable"],
     "module": "esnext"
