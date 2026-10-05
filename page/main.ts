@@ -1,0 +1,86 @@
+import { computed } from '@preact/signals-core'
+import { toRa } from '../examples/basic/helpers.ts'
+import {
+  _DYNAMIC,
+  _EACH,
+  a,
+  component,
+  type ElemenTs,
+  footer,
+  header,
+  li,
+  main,
+  nav,
+  renderToDom,
+  ul,
+} from '../src/index.ts'
+import { routeSig } from './routes.ts'
+
+const [mainToRender] = toRa(
+  computed<() => ElemenTs>(() => routeSig.value.render),
+)
+
+export const menuWithIds = {
+  Mission: {
+    href: '#Mission',
+    title: 'The Mission',
+  },
+  Install: {
+    href: '#Install',
+    title: 'How to install',
+  },
+  Benefits: {
+    href: '#Benefits',
+    title: 'Benefits',
+  },
+  ElementAPI: {
+    href: '#ElementAPI',
+    title: 'Element API',
+  },
+  Reactivity: {
+    href: '#Reactivity',
+    title: 'Reactivity',
+  },
+  Todo: {
+    href: '#Todo',
+    title: 'Todo example',
+  },
+  Mixing: {
+    href: '#Mixing',
+    title: 'Mixing reactive sources',
+  },
+}
+
+const NavBar = () =>
+  component(
+    // biome-ignore format: custom layout needed
+    (): ElemenTs =>
+
+      nav._(
+        ul._(
+          _EACH(Object.entries(menuWithIds))
+          .DO(([_name, { href, title }]) =>
+            li._(
+              a._(title)
+                .attr('href', href)
+          ))),
+      ),
+  )
+
+const Docs = () =>
+  component(
+    // biome-ignore format: custom layout needed
+    (): ElemenTs => [
+
+      header.class('container')
+        ._(NavBar()),
+
+      main.class('container')
+        ._(_DYNAMIC(mainToRender)),
+
+      footer.class('container')
+        ._('elemen-ts — built with TypeScript'),
+    ],
+  )
+
+renderToDom(document.body, Docs())

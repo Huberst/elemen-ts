@@ -1,0 +1,31 @@
+.code-block {
+  pre {
+    margin: 0;
+  }
+
+  margin-bottom: 1rem;
+}
+
+.code-block-example-result {
+  padding: 1rem;
+  background: rgb(35 43 61);
+  margin-bottom: 2rem;
+
+  color: var(--pico-color);
+  background-color: var(--pico-background-color);
+
+  button {
+    margin: 0 0.5rem 0.5rem 0;
+  }
+}
+
+.highlight {
+  color: var(--elemen-ts-logo-color-accent);
+}
+
+.search-with-suggestions-example {
+  input.odd {
+    color: var(--elemen-ts-logo-color-accent);
+  }
+
+}

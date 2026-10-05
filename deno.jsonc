@@ -1,0 +1,30 @@
+{
+  "name": "@huberst/elemen-ts",
+  "license": "MIT",
+  "exports": "./src/index.ts",
+  "version": "0.2.0",
+  "description": "Reactive UI components in plain TypeScript.",
+  "compilerOptions": {
+    "lib": ["dom", "es2024", "deno.ns", "deno.unstable"],
+    "module": "esnext"
+  },
+  "nodeModulesDir": "auto",
+  "imports": {
+    "@deno/vite-plugin": "npm:@deno/vite-plugin@^2.0.2",
+    "@preact/signals-core": "npm:@preact/signals-core@^1.12.1",
+    "@types/lodash": "npm:@types/lodash@^4.17.23",
+    "esbuild": "npm:esbuild@^0.27.2",
+    "lodash": "npm:lodash@^4.17.21",
+    "rxjs": "npm:rxjs@^7.8.2",
+    "shiki": "npm:shiki@^4.3.1",
+    "typescript": "npm:typescript@^6.0.2",
+    "vite": "npm:vite@^8.0.16"
+  },
+  "tasks": {
+    "vite": "deno run -N -S -R -E -W --allow-run --allow-ffi npm:vite",
+    "bundle": "deno run -A ./tools/bundle.ts",
+    "gen-elements": "deno run -A ./tools/gen-static-elements.ts",
+    "gen-example-strings": "deno run -A ./tools/gen-raw-exports.ts",
+    "gen-readme-examples": "deno task gen-example-strings && deno run -A ./tools/gen-readme-examples.ts"
+  }
+}

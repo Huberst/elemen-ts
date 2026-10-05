@@ -1,0 +1,180 @@
+@import url('./page-examples.css');
+@import url('../../examples/basic/minimal-todo.css');
+
+:root {
+  --elemen-ts-logo-color-base: #000;
+  --elemen-ts-logo-color-accent: #01afa7;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --elemen-ts-logo-color-base: #fff;
+    --elemen-ts-logo-color-accent: #4fcab0;
+  }
+}
+
+:root[data-theme='dark'] {
+  --elemen-ts-logo-color-base: #fff;
+  --elemen-ts-logo-color-accent: #4fcab0;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--pico-background-color);
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+}
+
+nav ul li {
+  padding: 0.4rem;
+}
+
+h2,
+.hero {
+  scroll-margin-top: 110px;
+}
+
+.path-base {
+  fill: var(--elemen-ts-logo-color-base);
+}
+
+.path-accent {
+  fill: var(--elemen-ts-logo-color-accent);
+}
+
+.plate {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.5s ease;
+}
+
+svg.elemen-ts-logo {
+  max-width: 540px;
+}
+
+svg:hover .plate {
+  transform: rotate(10deg) scale(0.8);
+}
+
+ul {
+  text-align: left;
+}
+
+
+
+.elemen-ts-logo {
+  --ets-shoot-down-duration: 150ms;
+  --ets-wiggle-duration: 300ms;
+  --ets-brackets-shake-duration: 100ms;
+
+  &.initial {
+    .dash {
+      transform: translate(70%, -100%);
+    }
+  }
+
+  &.animate {
+    .brackets-move {
+      transform-box: fill-box;
+      animation-delay: var(--ets-shoot-down-duration);
+      animation-name: brackets-shake;
+      animation-duration: var(--ets-brackets-shake-duration);
+      animation-timing-function: ease-in;
+    }
+
+    .dash {
+      transform-origin: bottom;
+
+      animation-name:
+        shoot-down,
+        wiggle;
+
+      animation-duration:
+        var(--ets-shoot-down-duration),
+        var(--ets-wiggle-duration);
+
+      animation-delay:
+        0ms,
+        var(--ets-shoot-down-duration);
+
+      animation-iteration-count:
+        1,
+        1;
+
+      /* make animation transform rotate value steps decrease by factor .3 with every iteration */
+      animation-direction:
+        normal,
+        alternate;
+
+      animation-timing-function:
+        linear, cubic-bezier(0.24, 1.53, 0.8, 0.6);
+
+      transform-box:
+        fill-box;
+
+      border: 1px solid var(--elemen-ts-logo-color-accent);
+    }
+  }
+}
+
+@keyframes brackets-shake {
+  50% {
+    transform: translate(0, 10%);
+  }
+}
+
+@keyframes shoot-down {
+  0% {
+    transform: translate(70%, -100%);
+  }
+}
+
+@keyframes wiggle {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  10% {
+    transform: rotate(7deg);
+  }
+
+  20% {
+    transform: rotate(-7deg);
+  }
+
+  30% {
+    transform: rotate(5deg);
+  }
+
+  40% {
+    transform: rotate(-5deg);
+  }
+
+  50% {
+    transform: rotate(3deg);
+  }
+
+  60% {
+    transform: rotate(-3deg);
+  }
+
+  70% {
+    transform: rotate(2deg);
+  }
+
+  80% {
+    transform: rotate(-2deg);
+  }
+
+  90% {
+    transform: rotate(1deg);
+  }
+}

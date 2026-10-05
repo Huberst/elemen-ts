@@ -1,0 +1,36 @@
+{
+  "name": "@huberst/elemen-ts",
+  "version": "0.2.0",
+  "description": "Reactive UI components in plain TypeScript.",
+  "license": "MIT",
+  "homepage": "https://huberst.github.io/elemen-ts/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Huberst/elemen-ts.git"
+  },
+  "bugs": "https://github.com/Huberst/elemen-ts/issues",
+  "type": "module",
+  "main": "./dist/bundle.js",
+  "module": "./dist/bundle.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/bundle.js",
+      "default": "./dist/bundle.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "deno task bundle",
+    "prepack": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
